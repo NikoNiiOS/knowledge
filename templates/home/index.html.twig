@@ -1,20 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Home - Knowledge Learning{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div style="text-align: center; margin-top: 50px;">
+        <h2>Welcome to Knowledge Learning!</h2>
+        <p>Your new e-learning platform dedicated to music, IT, cooking, and much more.</p>
+        
+        <br><br>
+        
+        {# If user not logged in -> show buttons #}
+        {% if not app.user %}
+            <a href="{{ path('app_login') }}" class="btn">Login</a>
+            <a href="{{ path('app_register') }}" class="btn btn-success">Register</a>
+        {% else %}
+            <p>Welcome back, <strong>{{ app.user.email }}</strong>!</p>
+        {% endif %}
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>Z:/formation_devweb_cef/Devoir/knowledge_learning/knowledge/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>Z:/formation_devweb_cef/Devoir/knowledge_learning/knowledge/templates/home/index.html.twig</code></li>
-    </ul>
-</div>
+    <div style="margin-top: 50px;">
+        <h3 style="text-align: center; color: #384050; border-bottom: 2px solid #0074c7; padding-bottom: 10px;">Our Learning Themes</h3>
+        
+        <div class="card-grid">
+            {% for theme in themes %}
+                <div class="card">
+                    <h3>{{ theme.name }}</h3>
+                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}" class="btn">View Courses</a>
+                </div>
+            {% else %}
+                <p style="text-align: center; width: 100%;">No themes available at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

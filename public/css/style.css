@@ -1,0 +1,161 @@
+body {
+    font-family: "Comic Sans MS", "Comic Sans", cursive; 
+    margin: 0;
+    padding: 0;
+    background-color: #f1f8fc; 
+    color: #384050; 
+}
+
+header {
+    background-color: #00497c; 
+    color: #f1f8fc;
+    padding: 1rem 2rem;
+    text-align: center;
+}
+
+main {
+    min-height: 70vh;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: #384050; 
+    color: #f1f8fc;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+a {
+    color: #0074c7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #0074c7;
+    color: #f1f8fc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #00497c;
+    text-decoration: none;
+}
+
+
+.text-danger {
+    color: #cd2c2e; /* Rouge */
+}
+
+.text-success {
+    color: #82b864; /* Vert */
+}
+
+.btn-danger {
+    background-color: #cd2c2e;
+    color: #f1f8fc;
+}
+
+.btn-success {
+    background-color: #82b864;
+    color: #f1f8fc;
+}
+
+.form-container {
+    background-color: white; 
+    border: 2px solid #00497c;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 400px;
+    margin: 2rem auto;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #00497c;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #384050;
+    border-radius: 4px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive; 
+    box-sizing: border-box;
+}
+
+.form-error {
+    color: #cd2c2e;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.card {
+    background-color: white;
+    border: 2px solid #0074c7;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #00497c;
+}
+
+.card h3 {
+    color: #00497c;
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    header nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    header nav a {
+        margin: 0 !important;
+        padding: 10px;
+        background-color: rgba(241, 248, 252, 0.1);
+        border-radius: 5px;
+    }
+
+    main {
+        padding: 1rem;
+    }
+}

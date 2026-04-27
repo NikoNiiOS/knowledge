@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ lesson.title }} - Knowledge Learning{% endblock %}
+
+{% block body %}
+    <div style="margin-top: 50px;">
+        <a href="{{ path('app_course_show', {'id': lesson.course.id}) }}" class="btn" style="background-color: #384050; margin-bottom: 20px;">
+            &larr; Back to {{ lesson.course.title }}
+        </a>
+
+        <h2 style="color: #00497c; border-bottom: 2px solid #0074c7; padding-bottom: 10px;">
+            {{ lesson.title }}
+        </h2>
+
+        <div style="margin-bottom: 30px; margin-top: 20px;">
+            {% if lesson.video %}
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <iframe width="100%" height="500" src="{{ lesson.video }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 800px;"></iframe>
+                </div>
+            {% endif %}
+
+            <div style="background-color: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); line-height: 1.6;">
+                {{ lesson.content|raw }}
+            </div>
+        </div>
+
+        {# Purchase / Validation #}
+        <div style="text-align: center; margin-top: 40px; padding: 30px; background-color: white; border: 2px solid #0074c7; border-radius: 8px;">
+            <h3 style="color: #00497c; margin-top: 0;">Lesson Actions</h3>
+            <p style="font-size: 1.2rem;">Price: <strong style="color: #82b864;">{{ lesson.price }} €</strong></p>
+            
+            <div style="margin-top: 20px;">
+                <a href="#" class="btn" style="margin: 0 10px;">Buy this lesson</a>
+                <a href="#" class="btn btn-success" style="margin: 0 10px;">Validate this lesson</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
