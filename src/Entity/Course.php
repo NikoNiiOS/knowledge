@@ -168,6 +168,11 @@ class Course
         return $this;
     }
 
+    public function __toString(): string
+    {
+        return $this->title; 
+    }
+
     #[ORM\PrePersist]
     public function onPrePersist(): void
     {
