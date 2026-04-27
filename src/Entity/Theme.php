@@ -137,6 +137,11 @@ class Theme
         return $this;
     }
     
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
     #[ORM\PrePersist]
     public function onPrePersist(): void
     {
