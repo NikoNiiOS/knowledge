@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment Successful{% endblock %}
+
+{% block body %}
+<div style="text-align: center; margin-top: 50px;">
+    <h2 style="color: #82b864;">Payment Successful!</h2>
+    <p>Thank you for your purchase. You now have full access to this lesson.</p>
+    
+    {% if purchase.lesson %}
+        <a href="{{ path('app_lesson_show', {'id': purchase.lesson.id}) }}" class="btn">Return to Lesson</a>
+    {% elseif purchase.course %}
+        <a href="{{ path('app_course_show', {'id': purchase.course.id}) }}" class="btn">Return to Course</a>
+    {% endif %}
+</div>
+{% endblock %}

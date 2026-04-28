@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}Knowledge Learning{% endblock %}</title>
         
-        {# LinkCSS file #}
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
@@ -20,16 +19,12 @@
             <nav style="margin-top: 15px;">
                 <a href="{{ path('app_home') }}" style="color: #f1f8fc; margin: 0 15px;">Home</a>
                 
-                {# If user logged in #}
                 {% if app.user %}
-                    {# If user Admin #}
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('admin') }}" style="color: #f1f8fc; margin: 0 15px;">Admin Dashboard</a>
                     {% endif %}
-                    
-                    <a href="{{ path('app_logout') }}" style="color: #cd2c2e; margin: 0 15px; font-weight: bold;">Logout</a>
-                
-                {# If user anonymous#}
+                    <a href="{{ path('app_dashboard') }}" style="margin-right: 15px; color: white; text-decoration: none; font-weight: bold;">My Dashboard</a>
+                    <a href="{{ path('app_logout') }}" style="color: #ffcccc; text-decoration: none;">Logout</a>
                 {% else %}
                     <a href="{{ path('app_login') }}" style="color: #f1f8fc; margin: 0 15px;">Login</a>
                     <a href="{{ path('app_register') }}" style="color: #82b864; margin: 0 15px; font-weight: bold;">Register</a>
