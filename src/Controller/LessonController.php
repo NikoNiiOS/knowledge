@@ -10,8 +10,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Controller responsible for displaying and validating lessons.
+ */
 class LessonController extends AbstractController
 {
+    /**
+     * Displays a specific lesson and verifies if the user has purchased or validated it.
+     *
+     * @param Lesson $lesson The lesson entity to display
+     * @param EntityManagerInterface $entityManager The entity manager for database operations
+     * @return Response Renders the lesson view
+     */
     #[Route('/lesson/{id}', name: 'app_lesson_show')]
     public function show(Lesson $lesson, EntityManagerInterface $entityManager): Response
     {
@@ -52,6 +62,14 @@ class LessonController extends AbstractController
         ]);
     }
 
+    /**
+     * Handles the validation process of a lesson for the currently authenticated user.
+     * Prevents duplicate validations.
+     *
+     * @param Lesson $lesson The lesson to validate
+     * @param EntityManagerInterface $entityManager The entity manager to save the validation
+     * @return Response Redirects back to the lesson display page
+     */
     #[Route('/lesson/{id}/validate', name: 'app_lesson_validate')]
     public function validate(Lesson $lesson, EntityManagerInterface $entityManager): Response
     {
