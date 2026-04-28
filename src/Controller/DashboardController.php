@@ -9,8 +9,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Controller responsible for the user's personal dashboard and progress tracking.
+ */
 class DashboardController extends AbstractController
 {
+    /**
+     * Calculates and displays the user's progress across all themes and courses.
+     * Determines if a course is completed and if a certification is acquired.
+     *
+     * @param ThemeRepository $themeRepository Repository to fetch all educational content
+     * @param EntityManagerInterface $entityManager Repository to fetch user validations
+     * @return Response Renders the dashboard view with calculated statistics
+     */
     #[Route('/dashboard', name: 'app_dashboard')]
     public function index(ThemeRepository $themeRepository, EntityManagerInterface $entityManager): Response
     {

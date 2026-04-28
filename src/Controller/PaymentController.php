@@ -13,8 +13,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * Controller handling e-commerce features and Stripe payment gateway integrations.
+ */
 class PaymentController extends AbstractController
 {
+    /**
+     * Initiates a Stripe Checkout session for a specific lesson purchase.
+     * Creates a pending Purchase entity before redirecting to Stripe.
+     *
+     * @param Lesson $lesson The lesson being purchased
+     * @param EntityManagerInterface $entityManager The entity manager
+     * @param UrlGeneratorInterface $urlGenerator Generates absolute URLs for Stripe callbacks
+     * @return Response Redirects the user to the Stripe payment page (HTTP 303)
+     */
     #[Route('/checkout/lesson/{id}', name: 'app_checkout_lesson')]
     public function checkoutLesson(Lesson $lesson, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): Response
     {
@@ -56,6 +68,14 @@ class PaymentController extends AbstractController
         return $this->redirect($session->url, 303);
     }
 
+    /**
+     * Initiates a Stripe Checkout session for an entire course.
+     *
+     * @param Course $course The course being purchased
+     * @param EntityManagerInterface $entityManager The entity manager
+     * @param UrlGeneratorInterface $urlGenerator Generates absolute URLs for Stripe callbacks
+     * @return Response Redirects the user to the Stripe payment page (HTTP 303)
+     */
     #[Route('/checkout/course/{id}', name: 'app_checkout_course')]
     public function checkoutCourse(Course $course, EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator): Response
     {
@@ -97,6 +117,14 @@ class PaymentController extends AbstractController
         return $this->redirect($session->url, 303);
     }
 
+    /**
+     * Handles the successful payment callback from Stripe.
+     * Updates the purchase status to paid in the database.
+     *
+     * @param Purchase $purchase The pending purchase entity
+     * @param EntityManagerInterface $entityManager The entity manager
+     * @return Response Renders the success confirmation view
+     */
     #[Route('/payment/success/{id}', name: 'app_payment_success')]
     public function success(Purchase $purchase, EntityManagerInterface $entityManager): Response
     {

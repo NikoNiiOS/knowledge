@@ -9,8 +9,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Controller responsible for course-related views.
+ */
 class CourseController extends AbstractController
 {
+    /**
+     * Displays a specific course and checks if the authenticated user already owns it.
+     *
+     * @param Course $course The course entity to display
+     * @param EntityManagerInterface $entityManager To check existing user purchases
+     * @return Response Renders the course view
+     */
     #[Route('/course/{id}', name: 'app_course_show')]
     public function show(Course $course, EntityManagerInterface $entityManager): Response
     {
