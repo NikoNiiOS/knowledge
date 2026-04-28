@@ -16,6 +16,26 @@
             Full course price: <strong style="color: #82b864;">{{ course.price }} €</strong>
         </p>
 
+        <div style="margin-bottom: 30px; padding: 20px; background-color: white; border: 2px solid #0074c7; border-radius: 8px; text-align: center;">
+            
+            {% if not app.user %}
+                <p>Log in to purchase this entire course and unlock all lessons.</p>
+                <a href="{{ path('app_login') }}" class="btn">Login to buy</a>
+            {% elseif hasPurchased %}
+                <div style="padding: 10px; background-color: #e3f2fd; border: 1px solid #2196f3; border-radius: 4px;">
+                    <p style="color: #1976d2; font-weight: bold; font-size: 1.2rem; margin: 0;">
+                        You already own this course! All lessons are unlocked.
+                    </p>
+                </div>
+            {% else %}
+                <p style="margin-bottom: 15px; font-size: 1.1rem;">Get access to all lessons in this course at once!</p>
+                <a href="{{ path('app_checkout_course', {'id': course.id}) }}" class="btn" style="padding: 15px 30px; font-size: 1.2rem;">
+                    Buy Entire Course ({{ course.price }} €)
+                </a>
+            {% endif %}
+
+        </div>
+
         <div class="card-grid">
             {% for lesson in course.lessons %}
                 <div class="card">

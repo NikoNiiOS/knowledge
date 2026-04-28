@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment Cancelled{% endblock %}
+
+{% block body %}
+<div style="text-align: center; margin-top: 50px;">
+    <h2 class="text-danger">Payment Cancelled</h2>
+    <p>Your transaction was cancelled. No charges were made.</p>
+    
+    {% if purchase.lesson %}
+        <a href="{{ path('app_lesson_show', {'id': purchase.lesson.id}) }}" class="btn">Return to Lesson</a>
+    {% elseif purchase.course %}
+        <a href="{{ path('app_course_show', {'id': purchase.course.id}) }}" class="btn">Return to Course</a>
+    {% endif %}
+</div>
+{% endblock %}
